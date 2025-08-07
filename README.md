@@ -82,14 +82,6 @@ Request Body:
 ## Responses:
 
 - 200 OK: Successfully processed the request.
-```json
-{
-    "Id": 0,
-    "DateCreated": "0001-01-01T00:00:00Z",
-    "Balance": 0
-}
-```
-
 - 400 Bad Request: Invalid input 
 - 500 Internal Server Error
 
