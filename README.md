@@ -74,7 +74,7 @@ Request Body:
 {
     "state":"win",
     "amount": 30.5,
-    "transactionId": "txadv456"
+    "transactionId": "abcd"
 }
 ```
 - import the postman collection and run the post request while the application is running
