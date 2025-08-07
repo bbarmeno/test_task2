@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "9c377e10-c379-47fb-8378-e7d8da7cd085",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36659413"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/user/1/transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Source-Type",
+						"value": "game",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"state\": \"lose\",\r\n  \"amount\": \"100.00\",\r\n  \"transactionId\": \"abcde\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/1/transaction",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"1",
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/user/1/balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/user/1/balance",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"1",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
