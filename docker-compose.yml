@@ -1,0 +1,56 @@
+#version: '3.1'
+name: entain
+
+services:
+   postgres:
+      container_name: postgres
+      image: postgres:latest
+      ports:
+        - "5430:5432"
+      restart: always
+      healthcheck:
+          test: "exit 0"
+      environment:
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: root
+        POSTGRES_DB: test
+        PGDATA: /var/lib/postgresql/data/pgdata
+      volumes:
+        - pg_data:/var/lib/postgresql/data/pgdata
+      networks:
+        - backend
+   migrations:
+    image: ghcr.io/kukymbr/goose-docker:latest
+    container_name: migrations
+    restart: no
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - GOOSE_DRIVER=postgres
+      - GOOSE_DBSTRING=host=postgres port=5432 user=root password=root dbname=test
+      - GOOSE_VERBOSE=true
+    volumes:
+      - ./migrations:/migrations
+    networks:
+      - backend
+   accbalance:
+    container_name: accbalance
+    ports:
+      - "8080:8080"
+    build: 
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - DATABASE_DSN=postgres://root:root@postgres:5432/test
+      - ADDRESS=8080     
+    networks:
+      - backend
+
+networks:
+  backend:
+volumes:
+  pg_data:
+  pgadmin-data:    
